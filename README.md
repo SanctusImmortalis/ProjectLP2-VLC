@@ -1,6 +1,6 @@
-## Projeto VLC para LP2
+# Projeto VLC para LP2
 
-# Grupo
+## Grupo
 
 Lucas Ferreira
 
