@@ -5,14 +5,17 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
+#include "Thread.h"
 #include "Sync.h"
 
-class Producer{
+class Producer : public Thread{
 public:
-  Producer(const char* ip, const char* port);
-  Producer
+  Producer(const char* ip, const char* port, Buffer* b) : Thread(ip, port, b) {}
+  virtual ~Producer();
+  void Produce(char* data);
 private:
-  sockaddr_in 
+  sockaddr_in addr;
+  Buffer* buf;
 };
 
 #endif
