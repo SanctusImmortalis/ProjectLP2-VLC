@@ -2,8 +2,6 @@
 
 ## Grupo
 
-Lucas Ferreira
-
 Itallo Alexsander
 
 Nelson Guedes
