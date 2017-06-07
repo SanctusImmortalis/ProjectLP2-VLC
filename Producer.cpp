@@ -1,6 +1,7 @@
 #include "Producer.h"
 
-void* producerCode(void* t){
+void* producerCode(void* arg){
+  Producer* t = (Producer*) arg;
   while(t->isActive()){
     empty->P();
     t->Produce();

@@ -6,7 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-void* consumerCode(void* t);
+void* consumerCode(void* arg);
 
 class Consumer : public Thread{
 public:

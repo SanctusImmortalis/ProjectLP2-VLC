@@ -9,7 +9,7 @@
 #include "Thread.h"
 #include "Sync.h"
 
-void* producerCode(void* t);
+void* producerCode(void* arg);
 
 class Producer : public Thread{
 public:

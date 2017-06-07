@@ -1,10 +1,11 @@
 #include "Consumer.h"
 
-Consumer::VIPs = 0;
-Consumer::num = 0;
-Consumer::lastFront = 0;
+int Consumer::VIPs = 0;
+int Consumer::num = 0;
+int Consumer::lastFront = 0;
 
-void* consumerCode(void* t){
+void* consumerCode(void* arg){
+  Consumer* t = (Consumer*) arg;
   while(t->isActive()){
     t->buf[t->front].filled -> P();
     t->buf[t->front].filled -> V();
