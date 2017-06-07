@@ -9,10 +9,12 @@
 
 int sock;
 
-Semaphore* full, empty, atom;
+Semaphore* empty, atom;
 
 void initSync(int n);
 void terminateSync();
 int FetchAndAdd(int* ptr, int val);
+int CompareAndSwap(int* ptr, int old, int nu);
+bool TestAndSet(bool* ptr);
 
 #endif

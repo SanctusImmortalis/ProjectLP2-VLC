@@ -11,6 +11,14 @@ Thread::Thread(const char* ip, const char* port, Buffer* b){
   active = true;
 }
 
+void Thread::Join(){
+  pthread_join(t, NULL);
+}
+
 bool Thread::isActive(){
   return active;
+}
+
+void Thread::deactivate(){
+  active = false;
 }

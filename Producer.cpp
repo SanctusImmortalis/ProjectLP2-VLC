@@ -4,12 +4,15 @@ void* producerCode(void* t){
   while(t->isActive()){
     empty->P();
     t->Produce();
-    full->V();
+    CompareAndSwap(&(buf[t->rear].toRead), 0, Consumer::n);
+    CompareAndSwap(&(buf[t->rear].VIPsToRead), 0, Consumer::VIPs);
+    buf[t->rear].filled -> V();
+    t->rear = (t->rear + 1) % BUFFERSIZE;
   }
+  delete t;
 }
 
 void Producer::Produce(){
-  char temp[PACKETSIZE];
-  recvfrom(sock, temp, PACKETSIZE, 0, NULL, NULL);
-  rear = (rear + 1) % BUFFERSIZE;
+  recvfrom(sock, &(buf[rear].data), PACKETSIZE, 0, NULL, NULL);
+
 }
