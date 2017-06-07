@@ -1,7 +1,7 @@
 #include "sem.h"
 
 Semaphore::Semaphore(int value){
-  sem_init(&sem, 0, value-1);
+  sem_init(&sem, 0, value);
 }
 
 Semaphore::~Semaphore(){
