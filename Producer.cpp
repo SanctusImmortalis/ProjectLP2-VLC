@@ -4,9 +4,9 @@ void* producerCode(void* t){
   while(t->isActive()){
     empty->P();
     t->Produce();
-    CompareAndSwap(&(buf[t->rear].toRead), 0, Consumer::n);
-    CompareAndSwap(&(buf[t->rear].VIPsToRead), 0, Consumer::VIPs);
-    buf[t->rear].filled -> V();
+    CompareAndSwap(&(t->buf[t->rear].toRead), 0, Consumer::n);
+    CompareAndSwap(&(t->buf[t->rear].VIPsToRead), 0, Consumer::VIPs);
+    t->buf[t->rear].filled -> V();
     t->rear = (t->rear + 1) % BUFFERSIZE;
   }
   delete t;

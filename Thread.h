@@ -21,6 +21,7 @@ private:
   bool active;
   pthread_t t;
   sockaddr_in addr;
+public:
   Buffer* buf;
 };
 

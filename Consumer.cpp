@@ -6,21 +6,21 @@ Consumer::lastFront = 0;
 
 void* consumerCode(void* t){
   while(t->isActive()){
-    buf[t->front].filled -> P();
-    buf[t->front].filled -> V();
+    t->buf[t->front].filled -> P();
+    t->buf[t->front].filled -> V();
     atom -> P();
-    if(buf[t->front].VIPsToRead && !TestAndSet(&(buf[t->front].firstIn))) buf[t->front].VIP->P();
+    if(t->buf[t->front].VIPsToRead && !TestAndSet(&(t->buf[t->front].firstIn))) t->buf[t->front].VIP->P();
     atom -> V();
-    if((!t->isVIP()) && buf[t->front].VIPsToRead){
-      buf[t->front].VIP->P();
-      buf[t->front].VIP->V();
+    if((!t->isVIP()) && t->buf[t->front].VIPsToRead){
+      t->buf[t->front].VIP->P();
+      t->buf[t->front].VIP->V();
     }
-    if(t->isVIP()) buf[t->front].access -> P();
+    if(t->isVIP()) t->buf[t->front].access -> P();
     t->Consume();
-    if(t->isVIP()) buf[t->front].access -> V();
-    if(FetchAndAdd(&(buf[(t->front)].VIPsToRead), -1) == 1) {buf[t->front].VIP->V();}
+    if(t->isVIP()) t->buf[t->front].access -> V();
+    if(FetchAndAdd(&(t->buf[(t->front)].VIPsToRead), -1) == 1) {t->buf[t->front].VIP->V();}
     atom->P();
-    if(!buf[(t->front)].toRead) { Consumer::lastFront = (t->front + 1)%BUFFERSIZE; atom->V(); buf[t->front].filled -> P(); buf[t->front].firstIn = false; empty->V(); }
+    if(!t->buf[(t->front)].toRead) { Consumer::lastFront = (t->front + 1)%BUFFERSIZE; atom->V(); t->buf[t->front].filled -> P(); t->buf[t->front].firstIn = false; empty->V(); }
     t->front = (t->front + 1) % BUFFERSIZE;
   }
   delete t;
