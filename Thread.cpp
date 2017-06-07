@@ -8,4 +8,9 @@ Thread::Thread(const char* ip, const char* port, Buffer* b){
   inet_aton(ip, &(addr.sin_addr));
   addr.sin_port = htons(atoi(port));
   buf = b;
+  active = true;
+}
+
+bool Thread::isActive(){
+  return active;
 }
