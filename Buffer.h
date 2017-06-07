@@ -16,6 +16,4 @@ typedef struct {
   char data[PACKETSIZE];
 } Buffer;
 
-Buffer b[BUFFERSIZE];
-
 #endif
