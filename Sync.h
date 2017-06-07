@@ -10,7 +10,7 @@
 
 int sock;
 
-Semaphore* empty, atom;
+Semaphore* empty, * atom;
 
 void initSync(int n, Buffer b[]);
 //void terminateSync();

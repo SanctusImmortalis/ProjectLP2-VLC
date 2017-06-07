@@ -8,7 +8,7 @@
 
 void* consumerCode(void* t);
 
-class Consumer{
+class Consumer : public Thread{
 public:
   Consumer(const char* ip, const char* port, Buffer* b, bool itisVIP) : Thread(ip, port, b) {
     atom->P();
