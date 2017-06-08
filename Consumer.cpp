@@ -12,6 +12,7 @@ void* consumerCode(void* arg){
   Consumer* t = (Consumer*) arg;
   if(t->isVIP()) {
     Consumer::access -> P();
+    t->front = Consumer::lastFront;
     //if(!TestAndSet(&Consumer::firstIn)) Consumer::VIPOnly -> P();
   }
   while(t->isActive()){
@@ -24,6 +25,7 @@ void* consumerCode(void* arg){
     }else{
       if(Consumer::VIPs){
         Consumer::VIPOnly -> P();
+        t->front = Consumer::lastFront;
       }
       //getAtom()->P();
       if(!CompareAndSwap(&(t->buf[t->front].toRead), 0, 0)){
@@ -53,7 +55,7 @@ void* consumerCode(void* arg){
         //Consumer::lastFront = (t->front + 1) % BUFFERSIZE;
         //t->buf[t->front].inUse = false;
         t->front = Consumer::lastFront;
-	if(t->buf[t->front].toRead == 1)
+    if(t->buf[t->front].toRead <= 1)
         	getEmpty()->V();
       }
       getAtom()->V();
