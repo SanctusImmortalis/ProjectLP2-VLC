@@ -13,7 +13,7 @@ void* producerCode(void* arg);
 
 class Producer : public Thread{
 public:
-  Producer(const char* ip, const char* port, Buffer* b) : Thread(ip, port, b) { rear = 0; bind(getSock(), (sockaddr*) &addr, sizeof(addr)); pthread_create(&t, NULL, producerCode, (void*) this); }
+  Producer(bool* result, const char* ip, const char* port, Buffer* b) : Thread(result, ip, port, b) { if(*result) {rear = 0; bind(getSock(), (sockaddr*) &addr, sizeof(addr)); pthread_create(&t, NULL, producerCode, (void*) this);} }
   void Produce();
 
   int rear;

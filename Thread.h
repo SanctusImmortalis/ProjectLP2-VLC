@@ -12,7 +12,7 @@
 
 class Thread{
 public:
-  Thread(const char* ip, const char* port, Buffer* b);
+  Thread(bool* result, const char* ip, const char* port, Buffer* b);
   ~Thread() {}
   bool isActive();
   void deactivate();

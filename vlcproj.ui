@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>569</width>
+    <height>382</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>VLCProj</string>
+   <string>VLC Stream Hub</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>60</y>
-      <width>91</width>
+      <x>484</x>
+      <y>0</y>
+      <width>71</width>
       <height>31</height>
      </rect>
     </property>
@@ -33,11 +33,443 @@
    <widget class="QPlainTextEdit" name="plainTextEdit">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>70</y>
-      <width>104</width>
-      <height>21</height>
+      <x>180</x>
+      <y>0</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>10</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>31</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>0</y>
+      <width>101</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>30</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>High Priority</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>80</y>
+      <width>31</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit_2">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>70</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_2">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>70</y>
+      <width>101</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>484</x>
+      <y>70</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>100</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>High Priority</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>80</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>140</y>
+      <width>31</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>130</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_3">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>130</y>
+      <width>101</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>484</x>
+      <y>130</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_3">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>160</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>High Priority</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>140</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>200</y>
+      <width>31</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>190</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_4">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>190</y>
+      <width>101</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>484</x>
+      <y>190</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_4">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>220</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>High Priority</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>200</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>260</y>
+      <width>31</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Port</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit_5">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>250</y>
+      <width>121</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_5">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>250</y>
+      <width>101</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>484</x>
+      <y>250</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_5">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>280</y>
+      <width>121</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>High Priority</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>260</y>
+      <width>21</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;IP&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>67</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Source IP</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>40</y>
+      <width>111</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>91</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Source Port</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="spinBox_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>110</y>
+      <width>111</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>65535</number>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>150</y>
+      <width>71</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
@@ -46,7 +478,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
+     <width>569</width>
      <height>25</height>
     </rect>
    </property>

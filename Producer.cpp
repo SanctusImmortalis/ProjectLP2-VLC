@@ -10,6 +10,7 @@ void* producerCode(void* arg){
     t->rear = (t->rear + 1) % BUFFERSIZE;
   }
   delete t;
+  return NULL;
 }
 
 void Producer::Produce(){

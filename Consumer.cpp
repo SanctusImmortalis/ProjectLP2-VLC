@@ -30,6 +30,7 @@ void* consumerCode(void* arg){
     t->front = (t->front + 1) % BUFFERSIZE;
   }
   delete t;
+  return NULL;
 }
 
 void Consumer::Consume(){

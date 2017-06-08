@@ -10,15 +10,17 @@ void* consumerCode(void* arg);
 
 class Consumer : public Thread{
 public:
-  Consumer(const char* ip, const char* port, Buffer* b, bool itisVIP) : Thread(ip, port, b) {
-    getAtom()->P();
-    Consumer::num++;
-    front = Consumer::lastFront;
-    buf[front].toRead++;
-    VIP = itisVIP;
-    if(VIP) {Consumer::VIPs++; buf[front].VIPsToRead++;}
-    getAtom()->V();
-    pthread_create(&t, NULL, consumerCode, (void*) this);
+  Consumer(bool* result, const char* ip, const char* port, Buffer* b, bool itisVIP) : Thread(result, ip, port, b) {
+    if(*result){
+        getAtom()->P();
+        Consumer::num++;
+        front = Consumer::lastFront;
+        buf[front].toRead++;
+        VIP = itisVIP;
+        if(VIP) {Consumer::VIPs++; buf[front].VIPsToRead++;}
+        getAtom()->V();
+        pthread_create(&t, NULL, consumerCode, (void*) this);
+    }
   }
   bool isVIP();
   void Consume();
