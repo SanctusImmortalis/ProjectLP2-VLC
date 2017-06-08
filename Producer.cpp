@@ -1,13 +1,19 @@
 #include "Producer.h"
+#include "Consumer.h"
 #include <stdio.h>
+
+int Producer::rear = 0;
 
 void* producerCode(void* arg){
   Producer* t = (Producer*) arg;
   while(t->isActive()){
     getEmpty()->P();
     t->Produce();
-    t->buf[t->rear].filled -> V();
-    t->rear = (t->rear + 1) % BUFFERSIZE;
+    getAtom()->P();
+    t->buf[Producer::rear].toRead = Consumer::num;
+    getAtom()->V();
+    t->buf[Producer::rear].filled -> V();
+    Producer::rear = (Producer::rear + 1) % BUFFERSIZE;
   }
   delete t;
   return NULL;
@@ -15,6 +21,6 @@ void* producerCode(void* arg){
 
 void Producer::Produce(){
 	fprintf(stderr, "Getting data\n");
-  recvfrom(getSock(), &(buf[rear].data), PACKETSIZE, 0, NULL, NULL);
+  recvfrom(getSock(), &(buf[Producer::rear].data), PACKETSIZE, 0, NULL, NULL);
 
 }

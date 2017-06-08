@@ -4,30 +4,61 @@
 int Consumer::VIPs = 0;
 int Consumer::num = 0;
 int Consumer::lastFront = 0;
+bool Consumer::firstIn = false;
+Semaphore* Consumer::VIPOnly = new Semaphore(1);
+Semaphore* Consumer::access = new Semaphore(1);
 
 void* consumerCode(void* arg){
   Consumer* t = (Consumer*) arg;
+  if(t->isVIP()) {
+    Consumer::access -> P();
+    //if(!TestAndSet(&Consumer::firstIn)) Consumer::VIPOnly -> P();
+  }
   while(t->isActive()){
-    t->buf[t->front].filled -> P();
-    t->buf[t->front].filled -> V();
-    CompareAndSwap(&(t->buf[t->front].toRead), 0, Consumer::num);
-    CompareAndSwap(&(t->buf[t->front].VIPsToRead), 0, Consumer::VIPs);
-    getAtom() -> P();
-    if(t->buf[t->front].VIPsToRead && !(t->buf[t->front].firstIn)) t->buf[t->front].VIP->P(); t->buf[t->front].firstIn = true;
-    getAtom() -> V();
-    if((!t->isVIP()) && t->buf[t->front].VIPsToRead){
-      t->buf[t->front].VIP->P();
-      t->buf[t->front].VIP->V();
+    if(t->isVIP()){
+      t->buf[t->front].filled -> P();
+      t->Consume();
+      t->front = (t->front + 1) % BUFFERSIZE;
+      Consumer::lastFront = t->front;
+      getEmpty()->V();
+    }else{
+      if(Consumer::VIPs){
+        Consumer::VIPOnly -> P();
+      }
+      //getAtom()->P();
+      if(!CompareAndSwap(&(t->buf[t->front].toRead), 0, 0)){
+        //getAtom()->V();
+        t->buf[t->front].filled -> P();
+        //getAtom()->P();
+      }else{
+        //t->buf[t->front].toRead--;
+        if(FetchAndAdd(&(t->buf[t->front].toRead), -1)) Consumer::lastFront = (t->front + 1) % BUFFERSIZE;
+        /*if(!TestAndSet(&(t->buf[t->front].inUse)))
+          //t->buf[t->front].inUse = true;
+          //getAtom()->V();
+          t->buf[t->front].filled -> P();
+          //getAtom()->P();
+          */
+      }
+      //getAtom()->V();
+      t->Consume();
+      getAtom()->P();
+      if(!(t->buf[t->front].toRead)){
+        //Consumer::lastFront = (t->front + 1) % BUFFERSIZE;
+        t->buf[t->front].inUse = false;
+        t->front = Consumer::lastFront;
+        getEmpty()->V();
+      }
+      getAtom()->V();
     }
-    if(t->isVIP()) t->buf[t->front].access -> P();
-    t->Consume();
-    if(t->isVIP()) {t->buf[t->front].access -> V();
-    if(FetchAndAdd(&(t->buf[(t->front)].VIPsToRead), -1) == 1) {t->buf[t->front].VIP->V();}}
-    getAtom()->P();
-    t->buf[(t->front)].toRead--;
-    if(!(t->buf[(t->front)].toRead)) { Consumer::lastFront = (t->front + 1)%BUFFERSIZE; t->buf[t->front].filled -> P(); t->buf[t->front].firstIn = false; getEmpty()->V(); }
-    getAtom()->V();
-    t->front = (t->front + 1) % BUFFERSIZE;
+  }
+  FetchAndAdd(&Consumer::num, -1);
+  if(t->isVIP()) {
+    if(FetchAndAdd(&(Consumer::VIPs), -1) == 1) {
+      //Consumer::firstIn = false;
+      for(int i = 0; i<=Consumer::num; i++) {Consumer::VIPOnly -> V();}
+    }
+    Consumer::access -> V();
   }
   delete t;
   return NULL;
@@ -36,7 +67,8 @@ void* consumerCode(void* arg){
 void Consumer::Consume(){
   char* temp;
   temp = buf[front].data;
-	fprintf(stderr, "Sending data\n");
+  if(VIP) fprintf(stderr, "High priority - Sending data\n");
+	else fprintf(stderr, "Sending data\n");
   sendto(getSock(), temp, PACKETSIZE, 0, (sockaddr*) &addr, sizeof(addr));
 }
 

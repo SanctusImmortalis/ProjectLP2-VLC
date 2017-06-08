@@ -7,11 +7,8 @@
 #include "sem.h"
 
 typedef struct {
-  Semaphore* VIP;
-  Semaphore* access;
   Semaphore* filled;
-  bool firstIn;
-  int VIPsToRead;
+  bool inUse;
   int toRead;
   char data[PACKETSIZE];
 } Buffer;

@@ -2,6 +2,7 @@
 #define CONSUMER_H
 
 #include "Thread.h"
+#include "sem.h"
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -17,7 +18,10 @@ public:
         front = Consumer::lastFront;
         buf[front].toRead++;
         VIP = itisVIP;
-        if(VIP) {Consumer::VIPs++; buf[front].VIPsToRead++;}
+        if(VIP) {
+          if(!Consumer::VIPs) Consumer::VIPOnly -> P();
+          Consumer::VIPs++;
+        }
         getAtom()->V();
         pthread_create(&t, NULL, consumerCode, (void*) this);
     }
@@ -27,9 +31,12 @@ public:
 
   int front;
   bool VIP;
+  static Semaphore* VIPOnly;
+  static Semaphore* access;
   static int VIPs;
   static int num;
   static int lastFront;
+  static bool firstIn;
 };
 
 #endif

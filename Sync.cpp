@@ -27,9 +27,13 @@ void initSync(Buffer b[]){
   if(sock<0) error("Socket error\n", -1);
 
   for(int i=0;i<BUFFERSIZE;i++){
-    b[i].VIP = new Semaphore(1);
-    b[i].access = new Semaphore(1);
+    //b[i].VIP = new Semaphore(1);
+    //b[i].access = new Semaphore(1);
     b[i].filled = new Semaphore(0);
+    b[i].toRead = 0;
+    //b[i].VIPsToRead = 0;
+    //b[i].firstIn = false;
+    b[i].inUse = false;
   }
 }
 
