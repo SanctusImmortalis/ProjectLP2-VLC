@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>VLCProj</string>
+   <string>VLC Stream Hub</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>270</x>
-      <y>60</y>
+      <x>300</x>
+      <y>0</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -33,8 +33,8 @@
    <widget class="QPlainTextEdit" name="plainTextEdit">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>70</y>
+      <x>130</x>
+      <y>10</y>
       <width>104</width>
       <height>21</height>
      </rect>
