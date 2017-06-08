@@ -32,7 +32,11 @@ void* consumerCode(void* arg){
         //getAtom()->P();
       }else{
         //t->buf[t->front].toRead--;
-        if(FetchAndAdd(&(t->buf[t->front].toRead), -1)) Consumer::lastFront = (t->front + 1) % BUFFERSIZE;
+        if(FetchAndAdd(&(t->buf[t->front].toRead), -1)) {
+		getAtom()->P();
+		Consumer::lastFront = (t->front + 1) % BUFFERSIZE;
+		getAtom()->V();
+	}
         /*if(!TestAndSet(&(t->buf[t->front].inUse)))
           //t->buf[t->front].inUse = true;
           //getAtom()->V();
@@ -45,9 +49,10 @@ void* consumerCode(void* arg){
       getAtom()->P();
       if(!(t->buf[t->front].toRead)){
         //Consumer::lastFront = (t->front + 1) % BUFFERSIZE;
-        t->buf[t->front].inUse = false;
+        //t->buf[t->front].inUse = false;
         t->front = Consumer::lastFront;
-        getEmpty()->V();
+	if(t->buf[t->front].toRead == 1)
+        	getEmpty()->V();
       }
       getAtom()->V();
     }
