@@ -16,7 +16,8 @@ public:
         getAtom()->P();
         Consumer::num++;
         front = Consumer::lastFront;
-        buf[front].toRead++;
+        for(int i=front;buf[front].toRead;i=(front + 1)%BUFFERSIZE)
+          buf[front].toRead++;
         VIP = itisVIP;
         if(VIP) {
           if(!Consumer::VIPs) Consumer::VIPOnly -> P();
