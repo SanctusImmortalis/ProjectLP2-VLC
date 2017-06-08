@@ -31,12 +31,14 @@ void* consumerCode(void* arg){
         t->buf[t->front].filled -> P();
         //getAtom()->P();
       }else{
-        //t->buf[t->front].toRead--;
-        if(FetchAndAdd(&(t->buf[t->front].toRead), -1)) {
-		getAtom()->P();
+        getAtom()->P();
+	t->buf[t->front].toRead--;
+        if(!(t->buf[t->front].toRead)) {
+		
 		Consumer::lastFront = (t->front + 1) % BUFFERSIZE;
-		getAtom()->V();
+		
 	}
+	getAtom()->V();
         /*if(!TestAndSet(&(t->buf[t->front].inUse)))
           //t->buf[t->front].inUse = true;
           //getAtom()->V();
