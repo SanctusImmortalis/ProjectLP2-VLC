@@ -33,7 +33,7 @@ void initSync(Buffer b[]){
     b[i].toRead = 0;
     //b[i].VIPsToRead = 0;
     //b[i].firstIn = false;
-    b[i].inUse = false;
+    //b[i].inUse = false;
   }
 }
 
