@@ -8,7 +8,7 @@
 
 typedef struct {
   Semaphore* filled;
-  bool inUse;
+  //bool inUse;
   int toRead;
   char data[PACKETSIZE];
 } Buffer;
