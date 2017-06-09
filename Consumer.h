@@ -36,6 +36,8 @@ public:
   static int num;
   static int lastFront;
   static bool firstIn;
+  
+  static int sock;
 };
 
 #endif
