@@ -3,13 +3,13 @@
 #include "Buffer.h"
 
 
-int sock;
+//int sock;
 
 Semaphore* empty, * atom;
 
-int getSock(){
-  return sock;
-}
+//int getSock(){
+//  return sock;
+//}
 
 Semaphore* getEmpty(){
   return empty;
@@ -23,8 +23,8 @@ void initSync(Buffer b[]){
   atom = new Semaphore(1);
   empty = new Semaphore(BUFFERSIZE);
 
-  sock = socket(AF_INET, SOCK_DGRAM, 0);
-  if(sock<0) error("Socket error\n", -1);
+  //sock = socket(AF_INET, SOCK_DGRAM, 0);
+  //if(sock<0) error("Socket error\n", -1);
 
   for(int i=0;i<BUFFERSIZE;i++){
     //b[i].VIP = new Semaphore(1);
