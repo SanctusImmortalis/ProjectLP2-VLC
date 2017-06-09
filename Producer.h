@@ -19,18 +19,18 @@ public:
       sock = socket(AF_INET, SOCK_DGRAM, 0);
       const int val = 1;
       const socklen_t len = sizeof(val);
-      setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (void*) &val, len); 
-      bind(sock, (sockaddr*) &addr, sizeof(addr)); 
+      setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (void*) &val, len);
+      bind(sock, (sockaddr*) &addr, sizeof(addr));
       pthread_create(&t, NULL, producerCode, (void*) this);
     } 
   }
   ~Producer(){
-    close(getSock());
+    close(sock);
   }
   void Produce();
 
   static int rear;
-  static int sock;
+  int sock;
 };
 
 #endif

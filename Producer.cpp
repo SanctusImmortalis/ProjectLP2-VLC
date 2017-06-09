@@ -21,6 +21,6 @@ void* producerCode(void* arg){
 
 void Producer::Produce(){
 	fprintf(stderr, "Getting data\n");
-  recvfrom(getSock(), &(buf[Producer::rear].data), PACKETSIZE, 0, NULL, NULL);
+  recvfrom(sock, &(buf[Producer::rear].data), PACKETSIZE, 0, NULL, NULL);
 
 }

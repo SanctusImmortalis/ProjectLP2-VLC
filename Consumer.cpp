@@ -1,6 +1,7 @@
 #include "Consumer.h"
 #include <stdio.h>
 
+int Consumer::sock = 0;
 int Consumer::VIPs = 0;
 int Consumer::num = 0;
 int Consumer::lastFront = 0;
@@ -78,7 +79,7 @@ void Consumer::Consume(){
   temp = buf[front].data;
   if(VIP) fprintf(stderr, "High priority - Sending data\n");
 	else fprintf(stderr, "Sending data\n");
-  sendto(getSock(), temp, PACKETSIZE, 0, (sockaddr*) &addr, sizeof(addr));
+  sendto(Consumer::sock, temp, PACKETSIZE, 0, (sockaddr*) &addr, sizeof(addr));
 }
 
 bool Consumer::isVIP(){
