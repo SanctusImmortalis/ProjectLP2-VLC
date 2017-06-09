@@ -1,6 +1,7 @@
 #include "Sync.h"
 #include "Error.h"
 #include "Buffer.h"
+#include "Consumer.h"
 
 
 //int sock;
@@ -22,6 +23,8 @@ Semaphore* getAtom(){
 void initSync(Buffer b[]){
   atom = new Semaphore(1);
   empty = new Semaphore(BUFFERSIZE);
+  
+  Consumer::sock = socket(AF_INET, SOCK_DGRAM, 0);
 
   //sock = socket(AF_INET, SOCK_DGRAM, 0);
   //if(sock<0) error("Socket error\n", -1);
